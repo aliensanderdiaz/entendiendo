@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Elaboración de la factura en el front</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col">
+                <a href="./index.html">Volver</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h1>Elaboración de la factura en el front</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p>
+                    En este caso vamos a empezar por el final, es decir en qué termina todo?
+                    <br>
+                    Al final he dividido 3 tipo de peticiones para crear la factura electrónica
+                </p>
+                <ul class="list-group">
+                    <li class="list-group-item">Consumidor Final</li>
+                    <li class="list-group-item">Cliente con datos</li>
+                    <li class="list-group-item">Factura con Retención</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <h5>Que gano y que pierdo</h5>
+                <p>
+                    MALO: En el backend voy a tener 3 peticiones diferentes, que van al final a hacer lo mismo.
+                </p>
+                <h5>Que datos necesito de un cliente para poder hacer una factura</h5>
+                <pre>
+                    {
+                        nombre: 'Consumidor Final',
+                        // tipoId: 'cc',
+                        numeroId: '222222222222',
+                        dv: '7',
+                        direccion: 'Carrera 3 # 9 - 101',
+                        email: 'clientes@almacenesuniversal.com',
+                        telefono: '8711366',
+                        regimenCode: '49',
+                        // regimenName: 'No Responsable de IVA',
+                        responsabilidadCode: 'R-99-PN',
+                        // responsabilidadName: 'No responsable',
+                        tipoPersonaCode: '2',
+                        // tipoPersonaName: 'Persona Natural',
+                        tipoDocumentoCode: '13',
+                        // tipoDocumentoName: 'Cédula de ciudadanía',
+                    }
+                </pre>
+                <p>
+                    En la anterior representación hay 15 datos
+                    <br>
+                    En realidad solo necesitamos 10 datos. 
+                    <br>
+                    Hay que hacer unos tratamientos a los datos de cada cliente
+                    para obtenerlos, debido a que en la base de datos, puede o no
+                    pueden estar.
+                    <br>
+                    Por ejemplo el campo nombre, lo separamos por primer nombre,
+                    segundo nombre y apellidos, para personas naturales.
+                    <br>
+                    En personas juridicas sería igualar el campo razón social a 
+                    a dicho campo nombre.
+                    <br>
+                    Pero en otros casos es posible que simplemente los datos no esten
+                    porque cuando se crearon, dicha información no era obligatoria.
+                </p>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
